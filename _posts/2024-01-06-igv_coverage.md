@@ -15,10 +15,10 @@ It wasn't until a few weeks ago that I decided to attempt this again. In turn, I
 #### 1. What you will need
 
 <ul>
-        <li>Command line [IGV 2.16.2](https://igv.org/doc/desktop/#DownloadPage/)</li>
-        <li>[Samtools](https://www.htslib.org/)</li>
-        <li>A genome FASTA file (for this tutorial, I'm using the [mm10 FASTA](https://hgdownload.soe.ucsc.edu/goldenPath/mm10/bigZips/))</li>
-        <li>A GTF file (for this tutorial, I'm using the mm10 [NCBI RefSeq](https://hgdownload.soe.ucsc.edu/goldenPath/mm10/bigZips/genes/) annotation)</li>
+        <li>Command line IGV 2.16.2 (https://igv.org/)</li>
+        <li>Samtools (https://www.htslib.org/)</li>
+        <li>A genome FASTA file (for this tutorial, I'm using the mm10 FASTA <a href="https://hgdownload.soe.ucsc.edu/goldenPath/mm10/bigZips/">from UCSC</a>)</li>
+        <li>A GTF file (for this tutorial, I'm using the mm10 NCBI RefSeq <a href="https://hgdownload.soe.ucsc.edu/goldenPath/mm10/bigZips/genes/">from UCSC</a>)</li>
         <li>One or more BAM files (I'm using 2 BAM files here)</li>
 </ul>
 
