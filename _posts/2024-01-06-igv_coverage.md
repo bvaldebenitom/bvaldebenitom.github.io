@@ -44,7 +44,7 @@ $IGV_HOME/igvtools sort mm10.ncbiRefSeq.gtf mm10.ncbiRefSeq_sorted.gtf
 $IGV_HOME/igvtools index mm10.ncbiRefSeq_sorted.gtf
 ````
 
-**WARNING**: Failure to index the GTF file, will result in long running times. Although the snapshot commands will work, when testing this tutorial on the unindexed file, it went for more than 26 minutes when loading it, in comparison to the ~1 minute it will take with the sorted and indexed version.
+**WARNING**: Failure to index the GTF file, will result in long running times. Although the snapshot commands will work, when testing this tutorial on the unindexed file, it went for more than 26 minutes when loading it versus the ~1 minute it will take with the sorted and indexed version.
 
 Finally, to index the BAM files, we can use samtools:
 ````markdown
@@ -73,14 +73,14 @@ snapshot igv_demo_sfrp2.png
 exit 
 ````
 
-We can save this into the file `igv_snapshot_demo.batch`. The script basically consists of loading the genome files (FASTA and sorted GTF), then setting `SAM.SHOW_ALIGNMENT_TRACK` to `false`, as I don't usually need to check the reads track, and loading the BAM files. Later, we define the snapshot directory, and through the goto and snapshot commands we are actually creating them. 
+We can save this into the file `igv_snapshot_demo.batch`. The script basically consists of loading the genome files (FASTA and sorted GTF), then setting `SAM.SHOW_ALIGNMENT_TRACK` to `false`, as I don't usually need to check the reads track, and loading the BAM files. Later, we define the snapshot directory, and through the `goto` and `snapshot` commands we are actually creating them. 
 
 Once all the above is done, we can run this final command to efficiently generate all the snapshots in one go:
 ````markdown
 xvfb-run --auto-servernum --server-num=1 java -showversion --module-path="${IGV_HOME}/lib" -Xmx8g @"${IGV_HOME}/igv.args" --module=org.igv/org.broad.igv.ui.Main -b igv_snapshot_demo.batch
 ````
 
-In this exaaple, the final snapshot generated will be:
+In this example, the generated snapshot will be:
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
@@ -88,7 +88,7 @@ In this exaaple, the final snapshot generated will be:
     </div>
 </div>
 <div class="caption">
-    Snapshot generated for the *Sfrp2* gene using the commands in this tutorial.
+    Snapshot generated for the Sfrp2 gene using the commands in this tutorial.
 </div>
 
 With this, we can now finally generate snapshots for a large number of genomic locations in an automated manner!
