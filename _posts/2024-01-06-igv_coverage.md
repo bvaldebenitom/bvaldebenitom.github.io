@@ -12,15 +12,17 @@ Ever since I started analyzing Transposable Elements (TEs) expression in RNA-Seq
 It wasn't until a few weeks ago that I decided to attempt this again. In turn, I was able to find this [blog post](https://janbio.home.blog/2020/09/16/igv-batch-snapshot-from-command-line/) with the backbone of the solution. Since then, I modified it to suit my needs for RNA-Seq analyses, and decided to write this post as a more definite tutorial that goes from scratch to the final generation of these long-coveted automated IGV snapshots. 
 
 
-1. What you will need
+#### 1. What you will need
 
-Command line [IGV 2.16.2](https://igv.org/doc/desktop/#DownloadPage/)
-[Samtools](https://www.htslib.org/)
-A genome FASTA file (for this tutorial, I'm using the [mm10 FASTA](https://hgdownload.soe.ucsc.edu/goldenPath/mm10/bigZips/))
-A GTF file (for this tutorial, I'm using the mm10 [NCBI RefSeq](https://hgdownload.soe.ucsc.edu/goldenPath/mm10/bigZips/genes/) annotation)
-One or more BAM files (I'm using 2 BAM files here)
+<ul>
+        <li>Command line [IGV 2.16.2](https://igv.org/doc/desktop/#DownloadPage/)</li>
+        <li>[Samtools](https://www.htslib.org/)</li>
+        <li>A genome FASTA file (for this tutorial, I'm using the [mm10 FASTA](https://hgdownload.soe.ucsc.edu/goldenPath/mm10/bigZips/))</li>
+        <li>A GTF file (for this tutorial, I'm using the mm10 [NCBI RefSeq](https://hgdownload.soe.ucsc.edu/goldenPath/mm10/bigZips/genes/) annotation)</li>
+        <li>One or more BAM files (I'm using 2 BAM files here)</li>
+</ul>
 
-2. Generating the snapshots
+#### 2. Generating the snapshots
 
 There are two main steps to actually generating the IGV snapshots in an automated manner. First, we need to index the genome FASTA file, the genome annotation GTF file, and the BAM files. 
 
@@ -78,7 +80,7 @@ Once all the above is done, we can run this final command to efficiently generat
 xvfb-run --auto-servernum --server-num=1 java -showversion --module-path="${IGV_HOME}/lib" -Xmx8g @"${IGV_HOME}/igv.args" --module=org.igv/org.broad.igv.ui.Main -b igv_snapshot_demo.batch
 ````
 
-In this exmaple, the final snapshot generated will be:
+In this exaaple, the final snapshot generated will be:
 
 <div class="row mt-3">
     <div class="col-sm mt-3 mt-md-0">
@@ -86,9 +88,10 @@ In this exmaple, the final snapshot generated will be:
     </div>
 </div>
 <div class="caption">
-    A simple, elegant caption looks good between image rows, after each row, or doesn't have to be there at all.
+    Snapshot generated for the *Sfrp2* gene using the commands in this tutorial.
 </div>
 
+With this, we can now finally generate snapshots for a large number of genomic locations in an automated manner!
 
 
 
