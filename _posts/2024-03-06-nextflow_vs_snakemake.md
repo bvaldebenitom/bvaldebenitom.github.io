@@ -1,11 +1,11 @@
 --
 layout: post
-title:  **
+title:  Nextflow vs Snakemake
 date: 2024-03-06 05:55:00
-description: **
+description: A comparison of Nextflow and Snakemake in the context of RNA-Seq analysis
 tags: workflows rnaseq
 categories: reviews
-thumbnail: assets/img/PENDING_thumbnail.png
+thumbnail: assets/img/02_nextflow_vs_snakemake/figure01.png
 toc:
   beginning: true
 ---
