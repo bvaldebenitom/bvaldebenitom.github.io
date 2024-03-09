@@ -1,4 +1,4 @@
---
+---
 layout: post
 title:  Nextflow vs Snakemake
 date: 2024-03-06 05:55:00
@@ -37,5 +37,10 @@ I will show the implementation first on Snakemake and latter on Nextflow.
 
 #### Setup
 
+The basic commands for [installing Snakemake](https://snakemake.readthedocs.io/en/stable/getting_started/installation.html) are:
 
+conda install -n base -c conda-forge mamba
+mamba create -c conda-forge -c bioconda -n snakemake snakemake
+mamba activate snakemake
+snakemake --help
 
