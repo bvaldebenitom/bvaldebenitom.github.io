@@ -5,7 +5,7 @@ date: 2024-03-06 05:55:00
 description: A comparison of Nextflow and Snakemake in the context of RNA-Seq analysis
 tags: workflows rnaseq
 categories: reviews
-thumbnail: assets/img/02_nextflow_vs_snakemake/figure01.png
+thumbnail: assets/img/02_nextflow_vs_snakemake/figure04_summary.png
 toc:
   beginning: true
 ---
@@ -257,7 +257,7 @@ SE = Channel.fromPath("*.fq").filter { it.name =~ /[^12].fq/ }
 #hg38_tes_random_n1000_simulated_pe_reads_l150_f15_SE.fq
 
 SE2 = SE.map { it -> [it.simpleName,it]}
-[hg38_tes_random_n1000_simulated_pe_reads_l150_f15_SE, hg38_tes_random_n1000_simulated_pe_reads_l150_f15_SE.fq]
+#[hg38_tes_random_n1000_simulated_pe_reads_l150_f15_SE, hg38_tes_random_n1000_simulated_pe_reads_l150_f15_SE.fq]
 ````
 
 This way, we can create a single variable that will allow for the proper processing of reads whether they are single- or paired-end. Altogether, the workflow definition is:
@@ -273,8 +273,45 @@ workflow {
 }
 ````
 
-Something that I really liked is the ability to pipe processes. Since "align" __emits__ the BAM files required for "telescope", we can just link them with the pipe.
+Something that I really liked is the ability to pipe processes. Since "align" _emits_ the BAM files required for "telescope", we can just link them with the pipe.
 
+The Nextflow workflow can then be run with:
+
+````markdown
+./nextflow RNASeq_workflow.nf -with-conda
+````
+
+## Comparison
+
+First things first, I have to say that I enjoyed using both Nextflow and Snakemake, and I wish I would've started using them sooner, as they are really convenient. Here, I adapted a really simplified version of what I usually do for RNA-Seq analysis so I could get an understanding on how each framework could be used and implemented. Also, it allowed me to make an unbiased and informed opinion on each one. For example, I didn't have a very good opinion of Snakemake because according to my previous supervisor, it wasn't able to use already existing Conda environments. Now I know better because I started to use it properly by carefully reading the documentation, the same way I do with any new thing that I start to learn.
+
+If you only plan to analyze sequencing data, I would probably recommend Nextflow because it has built-in features that enhance compatibility and handling this type of data. Setting Nextflow up has to be one of the fastest and hassle-free things that I have done. On the other hand, if you are not familiar with Java, you might face some issues in terms of syntax and how you can manipulate variables. I'm of the idea that once you know how to code in one language, switching to a new one can be fast. Still, I haven't used Java in  years, so I'm a bit rusty. Luckily, [they provide documentation to Groovy](https://www.nextflow.io/docs/latest/script.html), the specific name of the language, which helped me during this comparison. By contrast, in Snakemake you can use Python (which I learned over a year ago), and thus, for the functionalities that were missing I was able to quickly write some code to aid in the pipeline, as shown above.
+
+Another misconception that I had was the incompatibility of Nextflow with Conda environments. Nextflow allows for the seamless use and deploying of Conda environments, so if you are familiar with them, you are not really required to use Snakemake.
+
+#In terms of lines, the Nextflow script is 39 lines long, while the Snakemake is 43 lines long. I ended up writing helper functions in Snakemake, which take extra space, but in Nextflow I had to add the "publishDir" instruction for it to create and store the resulting files of each process.
+
+Probably where Nextflow has the edge is in terms of scalability, outputs and reports. For scalability, its ease of use can be very convenient if you work in a cloud-computing environment or in a computer where you have limited capabilities to install software, such as Conda. I didn't test it here, but I'm curious of their performance in AWS, for example. In terms of outputs, when you run the pipeline by default, Nextflow only shows the process and the completion percentage. On the other hand, Snakemake prints all the standard output of each rule, so you will see a similar output several times for each file processed in a rule, which will result in a messy terminal. Finally, Nextflow creates a beautiful and comprehensive report **by just adding the -with-report OUTPUT_HTML** option. You can see the report for this workflow [here](https://bvaldebenitom.github.io/assets/html/). 
+
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.html path="assets/img/02_nextflow_vs_snakemake/figure03_nextflow_report.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+    </div>
+</div>
+
+With this report you can quickly get an overview of several metrics of importance, such as CPU and memory usage per process and task, and as well as job duration. This can quickly help identify which processes are causing bottlenecks in the pipeline and if a process failed, whether it was caused by a mismatch in allocated memory and peak memory and so on. Overall, this report will go a long way in providing you with the detailed information that will help improve your pipelines.
+
+## Summary
+
+Here is a short summary of this comparison:
+
+<div class="row mt-3">
+    <div class="col-sm mt-3 mt-md-0">
+        {% include figure.html path="assets/img/02_nextflow_vs_snakemake/figure04_summary.png" class="img-fluid rounded z-depth-1" zoomable=true %}
+    </div>
+</div>
+
+I think that both frameworks are excellent and I recommend everyone to give them a try (or at least to one of them). However, given Nextflow's ease of installation / minimum requirements, the ability to generate amazing reports with just a flag, and more compatibility straight out of the box with sequencing data, it will be my default recommendation in the meantime.
 
 
 
