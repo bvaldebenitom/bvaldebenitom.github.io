@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  On the importance of assessing the results of computational tools with ground truth data
-date: 2024-03-17 05:55:00
+date: 2025-10-17 05:55:00
 description: A fully provenanced example on validating the results of a computational tool 
 tags: rnaseq transposableelements
 categories: reviews
